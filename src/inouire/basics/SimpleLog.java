@@ -12,21 +12,33 @@ public class SimpleLog {
 
     public static Logger logger = Logger.getLogger(SimpleLog.class);
     private static PatternLayout LAYOUT = new PatternLayout("%d - %-5p - %m%n");
-                    
+               
+    /**
+     * Initiate the logger in a console configuration (stdout).
+     * Log level is DEBUG by default
+     */
+    public static void initConsoleConfig()
+    {
+        logger.removeAllAppenders();
+        ConsoleAppender console = new ConsoleAppender();
+        console.setWriter(new OutputStreamWriter(System.out));
+        console.setLayout(LAYOUT);
+        logger.setLevel(Level.DEBUG);
+        logger.addAppender(console);
+    }
+    
     /**
      * Initiate the logger in a developement configuration (stdout + file in working directory).
      * Log level is DEBUG by default
      */
     public static void initDevConfig()
     {
-        //add a console appender
+        logger.removeAllAppenders();
         ConsoleAppender console = new ConsoleAppender();
         console.setWriter(new OutputStreamWriter(System.out));
         console.setLayout(LAYOUT);
         logger.setLevel(Level.DEBUG);
         logger.addAppender(console);
-        
-        //add a file appender in the current directory
         try{
             logger.addAppender(new FileAppender(LAYOUT,"application.log"));
         }catch(IOException ioe){
@@ -41,6 +53,7 @@ public class SimpleLog {
      */
     public static void initProdConfig(String logFile)
     {
+        logger.removeAllAppenders();
         try{
             FileAppender file = new FileAppender(LAYOUT,logFile);
             logger.addAppender(file);
