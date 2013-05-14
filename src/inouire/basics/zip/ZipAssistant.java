@@ -1,5 +1,6 @@
-package inouire.basics;
+package inouire.basics.zip;
 
+import inouire.basics.FileStats;
 import java.io.*;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;

@@ -1,4 +1,4 @@
-package inouire.basics;
+package inouire.basics.zip;
 
 import java.io.File;
 
