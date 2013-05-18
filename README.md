@@ -5,10 +5,11 @@ Java basics is a collection of simple tools for java.
 
 Here is the things these tools will allow you to do,:
 - parse command line arguments
-- load information from files with a tree structure ("YAML like")
+- load information from files with a "Yaml like" tree structure
+- validate the content of such a tree structure
 - load the lines of a "txt" file into an array
 - zip the wole content of a folder
-- use log4j without configuring anything
+- use log4j without any xml config files
 
 You can use the whole library, or just pick the class that you need and copy it in your own project.
 
@@ -43,7 +44,7 @@ Clone java-basics git repository from github
 git clone https://github.com/inouire/java-basics.git
 ```
 
-Build the project (ant needed)
+Build the project (you will need ant to do this)
 ``` bash
 cd java-basics
 ant default
