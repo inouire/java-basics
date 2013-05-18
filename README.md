@@ -3,7 +3,7 @@ java-basics
 
 Java basics is a collection of simple tools for java.
 
-Here is the things these tools will allow you to do,:
+Here are some things that it will allow you to do:
 - parse command line arguments
 - load information from files with a "Yaml like" tree structure
 - validate the content of such a tree structure
@@ -14,7 +14,7 @@ Here is the things these tools will allow you to do,:
 You can use the whole library, or just pick the class that you need and copy it in your own project.
 
 **Please keep in mind that the classes from java-basics are made to be reliable and really simple to use.**
-So if you feel that these classes don't provide you enough power, maybe you should look at more complete libraries from the java world.
+So if you feel that they don't provide you enough power or flexibility, you should look at more complete libraries from the java world, or send a pull request if you have a way to do what you want that keep the usage really simple.
 But maybe what they do will cover your needs as they cover mine. :dart:
 
 The next section present some examples to show how to use it. If you want to modify or contribute to java-basics, jump to the last section of this README.
