@@ -18,6 +18,7 @@ public class ArgsTest {
     
     @BeforeClass
     public static void setUpClass() {
+        
     }
     
     @AfterClass
@@ -130,5 +131,18 @@ public class ArgsTest {
         //second test: option is not expected to be found, default value should be used
         String[] args_without_flag = new String[]{"-h","test","--add","-f"};
         assertEquals( Args.getStringOption(option_list, args_without_flag,"well..."), "well...");
+    }
+    
+    /**
+     * Test of the object oriented mode.
+     */
+    @Test
+    public void testOOVersion(){
+        System.out.println("object oriented mode with 3 types of arguments");
+        String[] input = new String[]{"--p","22","--verbose","--name","Largo", };
+        Args parser = new Args(input);
+        assertEquals(parser.getOption("--verbose"), true);
+        assertEquals(parser.getIntegerOption("--p",0), 22);
+        assertEquals(parser.getStringOption("--name","bof"), "Largo");
     }
 }
