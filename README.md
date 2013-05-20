@@ -46,11 +46,12 @@ String[] flags = new String[]{"--help", "-h", "help"}
 boolean display_help = Args.getOption(flags, args);
 ```
 
-*Coming soon: The Args class can also be used through an object:*
+The Args class can also be used through an object. The behavior is similar to the static methods.
 ```java
 Args decoder = new Args(args);
 boolean help = decoder.getOption("-h");
 int port = decoder.getIntegerOption("-p", 22);
+String name = decoder.getStringOption("-o","/dev/null")
 ```
 
 ## MyMl
