@@ -56,7 +56,40 @@ String name = decoder.getStringOption("-o","/dev/null")
 
 ## MyMl
 
-*TODO*
+The MyMl class provides a way to parse tree-structured config files with a format a bit like Yaml. The format *is not* strictly Yaml, but looks like this:
+```YAML
+#my_conf.txt
+database:
+    host: localhost
+    port: 1234
+    name: test_db
+app:
+    log:
+        file: /var/log/app.log
+        level: warning
+        rotate: 5M
+```
+Each value is reachable by its absolute key, with the dot as a separator. The indentation must be of 4 spaces.
+
+Here is how to use it: (if the specified key cannot be found, a `MyMlException` will be raised)
+```java
+MyMl config = MyMl.loadFile("my_conf.txt");
+String db_host  = MyMl.getValue("database.host"); // = localhost;
+String log_file = MyMl.getValue("app.log.file"); // = /var/log/app.log;
+```
+
+The list of the keys contained in the structure can be exported:
+```java
+ArrayList<String> keys = config.getAbsoluteKeyList();
+```
+The `toString()` method will return a correctly indented String representation of the MyMl object.
+ 
+A MyMl file can be basically validated against a list of absolute keys with the MyMlValidator class.
+A config file will be valid if each absolute key specified in the constraints has a value is the file to validate.
+```java
+//TODO
+```
+
 
 ## TxtFileLoader
 
