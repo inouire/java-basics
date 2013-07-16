@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import inouire.basics.TxtFileLoader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * A simple tree structure made to contain configuration information.
@@ -47,7 +49,7 @@ public class MyMl {
         }
         return current.getValue();
     }
-    
+     
     /**
      * Get the list of the absolute keys of the structure
      * @return a list containing all the absolute keys
@@ -147,6 +149,17 @@ public class MyMl {
         //pass it to content loader 
         return loadContent(lines);
         
+    }
+    
+    /**
+     * Write the content of a MyMl object into a file
+     * @param file the file in which to write
+     * @throws IOException  if there is an error during writing
+     */
+    public void writeToFile(String file) throws IOException{
+        FileWriter fw = new FileWriter(file);
+        fw.write(this.toString());
+        fw.close();
     }
     
     @Override

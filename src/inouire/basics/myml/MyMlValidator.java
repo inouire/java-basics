@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * A class to validate easily a MyMl structure
+ * A class to validate a MyMl structure
  * The validator will check that the structure to validate contains a value for 
  * at least all the absolute keys of the leafs of the validation pattern 
  * @author Edouard Garnier de Labareyre
