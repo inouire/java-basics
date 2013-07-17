@@ -51,6 +51,30 @@ public class MyMl {
     }
      
     /**
+     * Get the boolean value for the given absolute key
+     * This function will silently ignore MyMl errors by using provided default value
+     * So it should be used only on a MyMl structure that has been validate with MyMlValidator
+     * @param absolute_key the absolute key of the value to look for
+     * @default_value the value to use if key is not found or boolean conversion doesn't work
+     * @return the boolean value found for this key
+     */
+    public boolean getBooleanValue(String absolute_key, boolean default_value){
+        String value = "";
+        try{
+            value = getValue(absolute_key).toLowerCase;
+        }catch(MyMlException ex){
+            //silently ignore it, default value will be used
+        }
+        boolean boolean_value=default_value;
+        if(value.equals("true")||value.equals("yes")||value.equals("1")){
+            boolean_value=true; 
+        }else if(value.equals("false")||value.equals("no")||value.equals("0")){
+            boolean_value=false;
+        }
+        return boolean_value;
+    }
+    
+    /**
      * Get the list of the absolute keys of the structure
      * @return a list containing all the absolute keys
      */
