@@ -21,6 +21,7 @@ public class MyMlTest {
         "    host: localhost",
         "    port : 1000 ",
         "    login: aaa",
+        "    enable: yes",
         "foo:",
         "    bar:",
         "        key : value with spaces",
@@ -44,9 +45,9 @@ public class MyMlTest {
     @Test
     public void testGetValue(){
         try {
-            assertEquals(valid_bench.getValue("database.port"),"1000");
-            assertEquals(valid_bench.getValue("foo.bar.key"),"value with spaces");
-            assertEquals(valid_bench.getValue("another"),"value");
+            assertEquals("1000", valid_bench.getValue("database.port"));
+            assertEquals("value with spaces", valid_bench.getValue("foo.bar.key"));
+            assertEquals("value", valid_bench.getValue("another"));
         } catch (MyMlException ex) {
             fail(ex.getMessage());
         }
@@ -56,6 +57,20 @@ public class MyMlTest {
         }catch(MyMlException ex){
             //we should go here
         }
+    }
+    
+    @Test
+    public void testGetBool(){
+        assertEquals(true,valid_bench.getBool("database.enable", false));
+        assertEquals(false,valid_bench.getBool("database.host", false));
+        assertEquals(false,valid_bench.getBool("impossible.key", false));
+    }
+    
+    @Test 
+    public void testGetInt(){
+        assertEquals(1000,valid_bench.getInt("database.port", 22));
+        assertEquals(22,valid_bench.getInt("database.host", 22));   
+        assertEquals(22,valid_bench.getInt("impossible.key", 22));   
     }
     
     /**
@@ -69,6 +84,7 @@ public class MyMlTest {
             "database.host",
             "database.port",
             "database.login",
+            "database.enable",
             "foo.bar.key",
             "another"
         };

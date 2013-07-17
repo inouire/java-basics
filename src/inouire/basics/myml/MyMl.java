@@ -58,7 +58,7 @@ public class MyMl {
      * @default_value the value to use if key is not found or boolean conversion doesn't work
      * @return the boolean value found for this key
      */
-    public boolean getBooleanValue(String absolute_key, boolean default_value){
+    public boolean getBool(String absolute_key, boolean default_value){
         String value = "";
         try{
             value = getValue(absolute_key).toLowerCase();
@@ -82,7 +82,7 @@ public class MyMl {
      * @default_value the value to use if key is not found or integer conversion doesn't work
      * @return the integer value found for this key
      */
-    public int getIntegerValue(String absolute_key, int default_value){
+    public int getInt(String absolute_key, int default_value){
         String value = "";
         try{
             value = getValue(absolute_key).toLowerCase();
