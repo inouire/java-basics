@@ -74,6 +74,30 @@ public class MyMl {
         return boolean_value;
     }
     
+     /**
+     * Get the integer value for the given absolute key
+     * This function will silently ignore MyMl errors by using provided default value
+     * So it should be used only on a MyMl structure that has been validate with MyMlValidator
+     * @param absolute_key the absolute key of the value to look for
+     * @default_value the value to use if key is not found or integer conversion doesn't work
+     * @return the integer value found for this key
+     */
+    public boolean getIntegerValue(String absolute_key, int default_value){
+        String value = "";
+        try{
+            value = getValue(absolute_key).toLowerCase;
+        }catch(MyMlException ex){
+            //silently ignore it, default value will be used
+        }
+        int integer_value=default_value;
+        try{
+            integer_value = Integer.parseInt(value);
+        }catch(NumberFormatException nfe){
+            //silently ignore it, default value will be used
+        }
+        return integer_value;
+    }
+    
     /**
      * Get the list of the absolute keys of the structure
      * @return a list containing all the absolute keys
