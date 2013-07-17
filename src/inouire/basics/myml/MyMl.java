@@ -66,9 +66,9 @@ public class MyMl {
             //silently ignore it, default value will be used
         }
         boolean boolean_value=default_value;
-        if(value.equals("true")||value.equals("yes")||value.equals("1")){
+        if(value.equalsIgnoreCase("true")||value.equalsIgnoreCase("yes")||value.equals("1")){
             boolean_value=true; 
-        }else if(value.equals("false")||value.equals("no")||value.equals("0")){
+        }else if(value.equalsIgnoreCase("false")||value.equalsIgnoreCase("no")||value.equals("0")){
             boolean_value=false;
         }
         return boolean_value;

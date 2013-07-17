@@ -54,8 +54,10 @@ public class MyMlTypeValidator {
             switch(type){
                 case BOOLEAN:
                 case BOOL:
-                    if(!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")){
-                        throw new MyMlException("Key '"+absolute_key+"' is expected to be a boolean (true/false)");
+                    if(!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")
+                    && !value.equalsIgnoreCase("yes") && !value.equalsIgnoreCase("no")
+                    && !value.equals("0") && !value.equals("no")){
+                        throw new MyMlException("Key '"+absolute_key+"' is expected to be a boolean (true/false, yes/no, 0/1)");
                     }
                     break;
                 case INTEGER:
