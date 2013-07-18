@@ -13,20 +13,24 @@ import static org.junit.Assert.*;
 public class MyMlValidatorTest {
     
     static MyMl valid_bench;
+    
     static MyMlValidator validator_ok;
     static MyMlValidator validator_nok;
     
+    static String[] validation_keys_ok;
+    static String[] validation_keys_nok;
+           
     static String[] pattern_ok = new String[]{
         "database:",
-        "    host: x",
-        "    port: x",
-        "another: x"
+        "    host: string",
+        "    port: int",
+        "another: bool"
     };
     
     static String[] pattern_nok = new String[]{
         "database:",
-        "    port: x",
-        "    password: x"
+        "    port: bool",
+        "    password: int"
     };
     
     public MyMlValidatorTest() {
@@ -38,21 +42,23 @@ public class MyMlValidatorTest {
         lines.addAll(Arrays.asList(MyMlTest.valid_content));
         valid_bench = MyMl.loadContent(lines);
         
-        ArrayList<String> content_ok = new ArrayList<String>();
-        content_ok.addAll(Arrays.asList(pattern_ok));
-        validator_ok = new MyMlValidator(content_ok);
-        
-        ArrayList<String> content_nok = new ArrayList<String>();
-        content_nok.addAll(Arrays.asList(pattern_nok));
-        validator_nok = new MyMlValidator(content_nok);
+        validator_ok = new MyMlValidator();
+        validator_ok.setValidationPattern(pattern_ok);
+
+        validator_nok = new MyMlValidator();
+        validator_nok.setValidationPattern(pattern_nok);
 
     }
     
     /**
-     * Test MyMl structure validation with MyMlValidator.
+     * Test MyMl structure validation with MyMlValidator in keys mode
      */
     @Test
-    public void testValidate() throws Exception {
+    public void testValidateKeys() throws Exception {
+        System.out.println("testValidateKeys");
+        
+        validator_ok.useKeyValidationOnly();
+        validator_nok.useKeyValidationOnly();
         try{
             validator_ok.validate(valid_bench);
         }catch(MyMlException ex){
@@ -62,6 +68,50 @@ public class MyMlValidatorTest {
             validator_nok.validate(valid_bench);
             fail("Invalid structure is seen valid by the validator");
         }catch(MyMlException ex){
+            //we should go here
+        }
+    }
+    
+    /**
+     * Test MyMl structure validation with MyMlValidator in type mode
+     */
+    @Test
+    public void testValidateTypes() throws Exception {
+        System.out.println("testValidateTypes");
+        
+        validator_ok.useTypeValidationOnly();
+        validator_nok.useTypeValidationOnly();
+        try{
+            validator_ok.validate(valid_bench);
+        }catch(MyMlException ex){
+            fail(ex.getMessage());
+        }
+        try{
+            validator_nok.validate(valid_bench);
+            fail("Invalid structure is seen valid by the validator");
+        }catch(Exception ex){
+            //we should go here
+        }
+    }
+    
+    /**
+     * Test MyMl structure validation with MyMlValidator in keys+types mode
+     */
+    @Test
+    public void testValidateKeysAndTypes() throws Exception {
+        System.out.println("testValidateKeysAndTypes");
+        
+        validator_ok.useFullValidation();
+        validator_nok.useFullValidation();
+        try{
+            validator_ok.validate(valid_bench);
+        }catch(MyMlException ex){
+            fail(ex.getMessage());
+        }
+        try{
+            validator_nok.validate(valid_bench);
+            fail("Invalid structure is seen valid by the validator");
+        }catch(Exception ex){
             //we should go here
         }
     }

@@ -25,7 +25,7 @@ public class MyMlTest {
         "foo:",
         "    bar:",
         "        key : value with spaces",
-        "another: value",
+        "another: yes",
         "alone:"
     };
             
@@ -47,7 +47,7 @@ public class MyMlTest {
         try {
             assertEquals("1000", valid_bench.getValue("database.port"));
             assertEquals("value with spaces", valid_bench.getValue("foo.bar.key"));
-            assertEquals("value", valid_bench.getValue("another"));
+            assertEquals("yes", valid_bench.getValue("another"));
         } catch (MyMlException ex) {
             fail(ex.getMessage());
         }
