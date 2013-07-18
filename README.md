@@ -16,8 +16,6 @@ You can use the whole library, or just pick the class that you need and copy it 
 **Please keep in mind that the classes from java-basics are made to be reliable and really simple to use.**
 So if you feel that they don't provide you enough power or flexibility, you should look at more complete libraries from the java world, or send a pull request if you have a way to do what you want that keep the usage really simple.
 
-But maybe what they do will cover your needs :dart: as they cover mine ? 
-
 The next sections present some examples to show how to use it. If you want to modify or contribute to java-basics, jump to the last section of this README.
 
 ## Args
@@ -46,7 +44,7 @@ String[] flags = new String[]{"--help", "-h", "help"}
 boolean display_help = Args.getOption(flags, args);
 ```
 
-The Args class can also be used through an object. The behavior is similar to the static methods.
+The Args class can also be used through an object. The behavior is similar to the static methods, but you won't need to specify args array at each call.
 ```java
 Args decoder = new Args(args);
 boolean help = decoder.getOption("-h");
@@ -56,7 +54,7 @@ String name = decoder.getStringOption("-o","/dev/null")
 
 ## MyMl
 
-The MyMl class provides a way to parse tree-structured config files with a format a bit like Yaml. The format *is not* strictly Yaml, but looks like this:
+The MyMl class provides a way to parse tree-structured config files with a format inspired from Yaml. The format *is not* Yaml, but looks like this:
 ```YAML
 #my_conf.txt
 database:
@@ -71,12 +69,15 @@ app:
 ```
 Each value is reachable by its absolute key, with the dot as a separator. The indentation must be of 4 spaces.
 
-Here is how to use it: (if the specified key cannot be found, a `MyMlException` will be raised)
+### Parsing
+
+Here is how to use it:
 ```java
 MyMl config = MyMl.loadFile("my_conf.txt");
 String db_host  = MyMl.getValue("database.host"); // = localhost;
 String log_file = MyMl.getValue("app.log.file"); // = /var/log/app.log;
 ```
+(if the specified key cannot be found, a `MyMlException` will be raised)
 
 The list of the keys contained in the structure can be exported:
 ```java
@@ -84,12 +85,14 @@ ArrayList<String> keys = config.getAbsoluteKeyList();
 ```
 The `toString()` method will return a correctly indented String representation of the MyMl object.
  
-A MyMl file can be basically validated against a list of absolute keys with the MyMlValidator class.
-A config file will be valid if each absolute key specified in the constraints has a value is the file to validate.
+### Validation
+ 
+A MyMl file can be validated against some constraints with the MyMlValidator class.
+By default a config file will be valid if each key specified in the constraints has a value, and that this value has the good type.
+However you can tell the validator only to look for mandatory keys, or only to check that the existing keys have the good type.
 ```java
 //TODO
 ```
-
 
 ## TxtFileLoader
 
