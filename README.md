@@ -89,9 +89,23 @@ The `toString()` method will return a correctly indented String representation o
  
 A MyMl file can be validated against some constraints with the MyMlValidator class.
 By default a config file will be valid if each key specified in the constraints has a value, and that this value has the good type.
-However you can tell the validator only to look for mandatory keys, or only to check that the existing keys have the good type.
+However you can tell the validator to look for the existence of mandatory keys only, or to check that the values of the structure to validate have the good type.
 ```java
-//TODO
+MyMlValidator validator = new MyMlValidator();
+validator.useKeyValidationOnly()
+         .setValidationKeys(new String[] { "database.host", "app.log.file"});
+try{
+    validator.validate(config);
+}catch(MyMlException mex){
+    //structure is invalid
+}
+```
+
+You can also validate without raising any exception with validateQuiet. It will juste return true if the structure is valid, false if not.
+```java
+MyMlValidator validator = new MyMlValidator();
+validator.setValidationPattern(validation_myml);
+boolean valid = validator.validateQuiet(config);
 ```
 
 ## TxtFileLoader
