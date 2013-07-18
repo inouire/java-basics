@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import inouire.basics.TxtFileLoader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -205,6 +206,8 @@ public class MyMl {
      * @throws IOException  if there is an error during writing
      */
     public void writeToFile(String file) throws IOException{
+        File toWriteTo = new File(file);
+        if(!toWriteTo.getParentFile().exists()) toWriteTo.getParentFile().mkdirs();
         FileWriter fw = new FileWriter(file);
         fw.write(this.toString());
         fw.close();
