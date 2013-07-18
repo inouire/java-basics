@@ -93,7 +93,11 @@ public class MyMlValidator {
         return this;
     }
 
-    
+    /**
+     * Validate a MyMl object
+     * @param object the MyMl structure to validate
+     * @throws MyMlException if the structure is invalid
+     */
     public void validate(MyMl object) throws MyMlException{
         
         checkValidationPolicy();
@@ -140,6 +144,20 @@ public class MyMlValidator {
                         break;
                 }
             }
+        }
+    }
+    
+    /**
+     * Validate a MyMl object, without raising any exception
+     * @param object the MyMl structure to validate
+     * @return true if valid, false if not
+     */
+    public boolean validateQuiet(MyMl object){
+        try{
+            this.validate(object);
+            return true;
+        }catch(MyMlException mex){
+            return false;
         }
     }
     

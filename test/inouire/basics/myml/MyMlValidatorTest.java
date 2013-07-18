@@ -98,7 +98,7 @@ public class MyMlValidatorTest {
      * Test MyMl structure validation with MyMlValidator in keys+types mode
      */
     @Test
-    public void testValidateKeysAndTypes() throws Exception {
+    public void testValidateKeysAndTypes() {
         System.out.println("testValidateKeysAndTypes");
         
         validator_ok.useFullValidation();
@@ -114,6 +114,18 @@ public class MyMlValidatorTest {
         }catch(Exception ex){
             //we should go here
         }
+    }
+    
+    /**
+     * Test MyMl structure quiet validation
+     */
+    @Test
+    public void testValidateQuiet(){
+        System.out.println("testValidateQuiet");
+        validator_ok.useFullValidation();
+        validator_nok.useFullValidation();
+        assertEquals(true,validator_ok.validateQuiet(valid_bench));
+        assertEquals(false,validator_nok.validateQuiet(valid_bench));
     }
 
     /**
