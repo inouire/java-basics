@@ -90,6 +90,7 @@ The `toString()` method will return a correctly indented String representation o
 A MyMl file can be validated against some constraints with the MyMlValidator class.
 By default a config file will be valid if each key specified in the constraints has a value, and that this value has the good type.
 However you can tell the validator to look for the existence of mandatory keys only, or to check that the values of the structure to validate have the good type.
+Available types are `int`, `bool`, and `string`.
 ```java
 MyMlValidator validator = new MyMlValidator();
 validator.useKeyValidationOnly()
@@ -118,13 +119,9 @@ boolean valid = validator.validateQuiet(config);
 
 ## Modify / contribute
 
-Clone java-basics git repository from github
+Clone java-basics git repository from github and build the project with ant
 ``` bash
 git clone https://github.com/inouire/java-basics.git
-```
-
-Build the project (you will need ant to do this)
-``` bash
 cd java-basics
 ant default
 ```
