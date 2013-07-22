@@ -25,18 +25,19 @@ If you want to modify or contribute to java-basics, jump to the last section of 
 
 ## Args
 
-The Args class allows you to get options values from the command line arguments.
-You define the name of the flag for this option, and the option value will be taken from the argument *after* this flag (if it exists...)
-The options can be of boolean, integer, or string type.
+The Args class allows you to get options values from the command line arguments. [full documentation](./doc/Args.md)
 
 ```java
 String[] flags = new String[]{"--help", "-h", "help"}
 boolean display_help = Args.getOption(flags, args);
 ```
 
+See 
+
 ## MyMl
 
-The MyMl class provides a way to parse tree-structured config files:
+The MyMl class provides a way to parse tree-structured config files. [full documentation](./doc/MyMl.md)
+
 ```YAML
 #my_conf.txt
 database:
@@ -51,11 +52,19 @@ String db_host  = MyMl.getValue("database.host"); // = localhost
 String db_port = MyMl.getValue("database.port"); // = 1234
 ```
 
+## SimpleLog
+
+*TODO*
+
 ## TxtFileLoader
 
 *TODO*
 
 ## ZipAssistant
+
+*TODO*
+
+## JarContentExtractor
 
 *TODO*
 
@@ -65,7 +74,7 @@ Clone java-basics git repository from github and build the project with ant
 ``` bash
 git clone https://github.com/inouire/java-basics.git
 cd java-basics
-ant default
+ant
 ```
 
 This will test the library, build the jar and generate the javadoc.
