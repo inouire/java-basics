@@ -32,8 +32,6 @@ String[] flags = new String[]{"--help", "-h", "help"}
 boolean display_help = Args.getOption(flags, args);
 ```
 
-See 
-
 ## MyMl
 
 The MyMl class provides a way to parse tree-structured config files. [full documentation](./doc/MyMl.md)
