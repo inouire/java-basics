@@ -1,8 +1,8 @@
 ## Args
 
 The Args class allows you to get options values from the command line arguments.
-You define the name of the flag for this option, and the option value will be taken from the argument *after* this flag (if it exists...)
-The options can be of boolean, integer, or string type.
+You define the name of the flag (or several names) for this option, and the option value will be taken from the argument *after* this flag (if it exists...)
+The options can have boolean, integer, or string type.
 
 ```java
 //get a boolean value
@@ -18,7 +18,7 @@ String player_name = Args.getStringOption("--name", args, System.getProperty("us
 It is also possible to define a list of flags for the same option:
 
 ```java
-String[] flags = new String[]{"--help", "-h", "help"}
+String[] flags = new String[]{"--help", "-h", "help"};
 
 //true if any of the flags above is present in the arguments
 boolean display_help = Args.getOption(flags, args);
