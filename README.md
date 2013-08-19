@@ -80,7 +80,7 @@ TxtFileLoader loader = new TxtFileLoader();
 loader.ignoreEmptyLines(false)
       .trimLines(true)
       .trimComments(true)
-      .setCommentPattern('//');
+      .setCommentPattern("//");
 ArrayList<String> lines = loader.loadFile("my_file.txt");
 ```
 
