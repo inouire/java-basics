@@ -57,9 +57,9 @@ String db_user = MyMl.getValue("database.auth.username"); // = john
 
 The SimpleLog class allows you to initiate a log4j logger without any configuration file.
 Several modes are available:
-- consoleConfig has only a console appender
+- consoleConfig which has only a console appender
 - devConfig with both a console and a file appender to application.log
-- prodConfig has only a file appender to a custom file name
+- prodConfig which has only a file appender to a custom file name
 
 ```java
 SimpleLog.initConsoleConfig();
@@ -71,14 +71,16 @@ SimpleLog.logger.info("Starting myapp");//will be logged to myapp.log only
 
 ## TxtFileLoader
 
-The TxtFileLoader class provides you a way to painlessly load the content of a 'txt' file into an array. 
+The TxtFileLoader class provides a way to painlessly load the content of a 'txt' file into an array. 
 Each line of the file is an element of the array, thus you can browse it peacefully as many time as you want, and forget about the InputStream and other BufferedReaders.
 Several options are available in order to ignore/clean things from the input file.
 
 ```java
 TxtFileLoader loader = new TxtFileLoader();
-loader.ignoreEmptyLines(true)
-      .trimLines(false);
+loader.ignoreEmptyLines(false)
+      .trimLines(true)
+      .trimComments(true)
+      .setCommentPattern('//');
 ArrayList<String> lines = loader.loadFile("my_file.txt");
 ```
 
@@ -93,7 +95,10 @@ With the ZipAssistant class, you can create a zip file with the whole content of
 The JarContentExtrator class allows you to extract to your disk any file contained in your application jar.
 Just like this:
 ```java
-File extracted = JarContentExtractor.extractToFile("/inouire/app/default_conf.txt", "conf.txt");
+File extracted = JarContentExtractor.extractToFile(
+                    "/inouire/app/default_conf.txt",
+                    "conf.txt"
+                 );
 ```
 
 ## Modify / contribute
