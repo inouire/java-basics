@@ -23,7 +23,7 @@ public class JarContentExtractorTest {
         System.out.println("extractContentFromJarToString");
         String path_in_jar = "/inouire/basics/data/sample-file.txt";
         String expResult = "Hello World !";
-        String result = JarContentExtractor.extractContentFromJarToString(path_in_jar);
+        String result = JarContentExtractor.extractToString(path_in_jar);
         assertEquals(expResult, result);
     }
 
@@ -35,7 +35,7 @@ public class JarContentExtractorTest {
         System.out.println("extractContentFromJarToFile");
         File temp_file = temp_folder.newFile("extracted-sample.txt");
         String path_in_jar = "/inouire/basics/data/sample-file.txt";
-        File extracted = JarContentExtractor.extractContentFromJarToFile(path_in_jar, temp_file.getAbsolutePath());
+        File extracted = JarContentExtractor.extractToFile(path_in_jar, temp_file.getAbsolutePath());
         if(!extracted.exists()){
             fail("File has not been created");
         }

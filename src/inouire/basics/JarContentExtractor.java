@@ -19,8 +19,8 @@ public class JarContentExtractor {
      * @param path_in_jar the path of the file in the ressource jar
      * @return the content of the file as a String, null if there is an error
      */
-    public static String extractContentFromJarToString(String path_in_jar){
-        byte[] content_bytes = extractContentFromJarToByteArray(path_in_jar);
+    public static String extractToString(String path_in_jar){
+        byte[] content_bytes = extractToByteArray(path_in_jar);
         String content_string;
         if(content_bytes!=null){
             content_string = bytes2String(content_bytes);
@@ -36,7 +36,7 @@ public class JarContentExtractor {
      * @param file_path the path of the output file on the disk
      * @return the created file if success, null if error
      */
-    public static File extractContentFromJarToFile(String path_in_jar,String file_path) throws FileNotFoundException{
+    public static File extractToFile(String path_in_jar,String file_path) throws FileNotFoundException{
 
         //load input stream from jar
         InputStream ressource = JarContentExtractor.class.getResourceAsStream(path_in_jar);
@@ -71,7 +71,7 @@ public class JarContentExtractor {
      * @param path_in_jar the path of the file in the ressource jar
      * @return the content of the file as a byte array, null if there is an error
      */
-    public static byte[] extractContentFromJarToByteArray(String path_in_jar){
+    public static byte[] extractToByteArray(String path_in_jar){
         InputStream resource = JarContentExtractor.class.getResourceAsStream(path_in_jar);
         byte[] buffer = new byte[1];
         LinkedList<Byte> content=new LinkedList<Byte>();
