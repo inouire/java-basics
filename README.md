@@ -29,8 +29,8 @@ The Args class allows you to get options values from the command line arguments.
 
 ```java
 boolean display_help = Args.getOption("--help", args);
-String user_name = Args.getStringOption("--name", args);
-int server_port = Args.getIntOption("--port", args)
+String user_name = Args.getStringOption("--name", args, System.getProperty("user.name"));
+int server_port = Args.getIntOption("--port", args, 22)
 ```
 
 ## MyMl
