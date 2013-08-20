@@ -28,8 +28,9 @@ If you want to modify or contribute to java-basics, jump to the last section of 
 The Args class allows you to get options values from the command line arguments. See [full documentation](./doc/Args.md).
 
 ```java
-String[] flags = new String[]{"--help", "-h", "help"}
-boolean display_help = Args.getOption(flags, args);
+boolean display_help = Args.getOption("--help", args);
+String user_name = Args.getStringOption("--name", args);
+int server_port = Args.getIntOption("--port", args)
 ```
 
 ## MyMl
