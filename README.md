@@ -92,13 +92,9 @@ With the ZipAssistant class, you can create a zip file with the whole content of
 
 ## JarContentExtractor
 
-The JarContentExtrator class allows you to extract to your disk any file contained in your application jar.
-Just like this:
+The JarContentExtrator class allows you to extract to your disk any file contained in your application jar, just like that:
 ```java
-File extracted = JarContentExtractor.extractToFile(
-                    "/inouire/app/default_conf.txt",
-                    "conf.txt"
-                 );
+JarContentExtractor.extractToFile("/my/package/default_conf.txt","conf.txt");
 ```
 
 ## Modify / contribute
