@@ -88,8 +88,12 @@ ArrayList<String> lines = loader.loadFile("my_file.txt");
 ## ZipAssistant
 
 With the ZipAssistant class, you can create a zip file with the whole content of a folder of your disk. The directory structure will be kept inside the created zip.
-
-*TODO*
+```java
+File input_folder=new File("/my/folder");
+File output_zip_file=new File("/tmp/my_folder.zip");
+ZipAssistant zipper = new ZipAssistant();
+zipper.compressToZip(input_folder, output_zip_file)
+```
 
 ## JarContentExtractor
 
